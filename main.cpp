@@ -35,6 +35,7 @@ void menu(void) {
   std::string choiceString;
 	int choice = -1; //declare and initialise an integer type variable
 	do { //set up a continuous loop
+        std::cout << "\nHello World!:\n"; //computer says hello to the world
 		std::cout << "\nAdvanced Programming - Primers Portfolio Menu:\n";
 		std::cout << "Monday (Basic Programming Primers)\n";
 		std::cout << "\t1. Fahrenheit / Centigrade conversion\n";
