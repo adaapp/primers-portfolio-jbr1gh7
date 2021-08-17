@@ -76,7 +76,9 @@ void selfServiceCheckout(void) {
             cumulativeSum += quantity * currentCost;
         }
         else {
-            //calc tax 
+            float shoppingTax = cumulativeSum * (taxRate / 100);
+            output("\nSubtotal: £" + std::to_string(cumulativeSum) + "\nShopping tax: £" + std::to_string(shoppingTax) + "\n");
+            output("\nTotal: £" + std::to_string(cumulativeSum + shoppingTax)); 
         }
     }
 }
