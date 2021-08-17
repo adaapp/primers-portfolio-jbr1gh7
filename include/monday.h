@@ -10,14 +10,6 @@ std::string promptUserInput(std::string message) {
     return temp;
 }
 
-std::string floatToString(float floatToCast) {
-    return std::to_string(floatToCast);
-}
-
-float stringToFloat(std::string stringToCast) {
-    return stof(stringToCast);
-}
-
 float cToF(float centigrade) {
     return (centigrade * 9 / 5) + 32; //Centigrade to Fahrenheit.
 }
@@ -35,8 +27,8 @@ void fahrenheitCentigradeConversion(void) {
         temperatureString = promptUserInput("\nPlease enter the starting temperature: ");
 
         try {
-            stringToFloat(temperatureString);
-            temperatureFloat = stringToFloat(temperatureString);
+            stof(temperatureString);
+            temperatureFloat = stof(temperatureString);
             retryChoice = false;
 
         }
@@ -51,13 +43,15 @@ void fahrenheitCentigradeConversion(void) {
         std::string chosenConversion = promptUserInput("\nPress ‘C’ to convert from Fahrenheit to Centigrade.\nPress ‘F’ to convert from Centigrade to Fahrenheit. \n");
 
         if (chosenConversion == "C" || chosenConversion == "c") {
+            float convertedTemp = fToC(temperatureFloat);
             output("Your choice: C\n");
-            output(temperatureString + " degrees Fahrenheit is " + floatToString(fToC(temperatureFloat)));
+            output(temperatureString + " degrees Fahrenheit is " + std::to_string(convertedTemp));
             retryChoice = false;
         }
         else if (chosenConversion == "F" || chosenConversion == "f") {
+            float convertedTemp = cToF(temperatureFloat);
             output("Your choice: F\n");
-            output(temperatureString + " degrees Celsius is " + floatToString(cToF(temperatureFloat)));
+            output(temperatureString + " degrees Celsius is " + std::to_string(convertedTemp));
             retryChoice = false;
         }
         else {
@@ -67,6 +61,23 @@ void fahrenheitCentigradeConversion(void) {
 }
 
 void selfServiceCheckout(void) {
-	std::cout << " - selfServiceCheckout: not yet implemented\n\n";
+    const float taxRate = 5.5;
+    int quantity = 1;
+    int itemCounter = 0;
+    float cumulativeSum = 0.0;
+    float currentCost;
+
+	while (quantity > 0) {
+        itemCounter ++;
+        quantity = stoi(promptUserInput("\nPlease enter a quantity for item " + std::to_string(itemCounter) + " (or 0 to finish): "));
+        
+        if (quantity > 0) {
+            currentCost = stof(promptUserInput("\nPlease enter item " + std::to_string(itemCounter) + "’s cost: "));
+            cumulativeSum += quantity * currentCost;
+        }
+        else {
+            //calc tax 
+        }
+    }
 }
 
