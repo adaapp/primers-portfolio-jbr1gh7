@@ -1,5 +1,18 @@
+int checkPassword(password) {
+    if (password.length() < 4) {
+
+    }
+    else if (password.length() >= 4 && password.length() < 8) {
+
+    }
+    else if (password.length() >= 8) {
+        
+    }
+}
+
 void passwordComplexityChecker(void) {
-	std::cout << " - passwordComplexityChecker: not yet implemented\n\n";
+	std::string password = promptUserInput("\nEnter your password");
+    checkPassword(password);
 }
 
 
