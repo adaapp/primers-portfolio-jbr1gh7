@@ -72,6 +72,7 @@ void outputEmployees(std::vector<std::string> employees) {
 }
 
 void employeeListRemoval(void) {
+    std::string toRemove;
 	std::vector<std::string> employees = {
         "John Smith",
         "Jaelynn Stuart",
@@ -80,13 +81,20 @@ void employeeListRemoval(void) {
         "Cale Myers"
     };
 
+    int originalSize = employees.size();
+
     outputEmployees(employees);
 
-    std::string toRemove = promptUserInput("\nEnter an employee name to remove: ");
+    while (employees.size() == originalSize) {
+        toRemove = promptUserInput("\nEnter an employee name to remove: ");
+        for (int i=0; i<employees.size(); i++) {
+            if (employees[i] == toRemove) {
+                employees.erase(employees.begin() + i);
+            }
+        }
 
-    for (int i=0; i<employees.size(); i++) {
-        if (employees[i] == toRemove) {
-            employees.erase(employees.begin() + i);
+        if (employees.size() == originalSize) {
+            output("\nSorry, the name '" + toRemove + "' does not exist in this list.");
         }
     }
 
