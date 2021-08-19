@@ -20,7 +20,7 @@ int checkPassword(std::string password) {
         return 1;
     }
 
-    if (password.length() >= 4) {
+    if (password.length() >= 4 && password.length() < 8) {
         if (letterCount > 0 && digitCount > 0) {
             return 2;
         }
@@ -39,25 +39,27 @@ int checkPassword(std::string password) {
 }
 
 void passwordComplexityChecker(void) {
-	std::string password = promptUserInput("\nEnter your password: ");
-    int strength = checkPassword(password);
+    while (true) {
+        std::string password = promptUserInput("\nEnter your password: ");
+        int strength = checkPassword(password);
 
-    switch(strength) {
-        case 1:
-            output()
-            break;
-        case 2:
-            // code block
-            break;
-        case 3:
-            // code block
-            break;
-        case 4:
-            // code block
-            break;
-        default:
-            // code block
-}
+        switch(strength) {
+            case 1:
+                output("\nThe password '" + password+ "' is Weak");
+                break;
+            case 2:
+                output("\nThe password '" + password+ "' is Moderate");
+                break;
+            case 3:
+                output("\nThe password '" + password+ "' is Strong");
+                break;
+            case 4:
+                output("\nThe password '" + password+ "' is Very Strong");
+                break;
+            default:
+                output("\nERROR: something went wrong");
+        }
+    }
 }
 
 
