@@ -1,3 +1,5 @@
+#include <vector>
+
 int checkPassword(std::string password) {
     std::regex lettersExpression("[a-z A-Z]");
 
@@ -39,30 +41,54 @@ int checkPassword(std::string password) {
 }
 
 void passwordComplexityChecker(void) {
-    while (true) {
-        std::string password = promptUserInput("\nEnter your password: ");
-        int strength = checkPassword(password);
+    std::string password = promptUserInput("\nEnter your password: ");
+    int strength = checkPassword(password);
 
-        switch(strength) {
-            case 1:
-                output("\nThe password '" + password+ "' is Weak");
-                break;
-            case 2:
-                output("\nThe password '" + password+ "' is Moderate");
-                break;
-            case 3:
-                output("\nThe password '" + password+ "' is Strong");
-                break;
-            case 4:
-                output("\nThe password '" + password+ "' is Very Strong");
-                break;
-            default:
-                output("\nERROR: something went wrong");
-        }
+    switch(strength) {
+        case 1:
+            output("\nThe password '" + password + "' is Weak");
+            break;
+        case 2:
+            output("\nThe password '" + password + "' is Moderate");
+            break;
+        case 3:
+            output("\nThe password '" + password + "' is Strong");
+            break;
+        case 4:
+            output("\nThe password '" + password + "' is Very Strong");
+            break;
+        default:
+            output("\nERROR: something went wrong");
+    }
+    
+}
+
+void outputEmployees(std::vector<std::string> employees) {
+    output("\nThere are " + std::to_string(employees.size()) + " employees:");
+
+    for (int i=0; i<employees.size(); i++) {
+        output("\n" + employees[i]);
     }
 }
 
-
 void employeeListRemoval(void) {
-	std::cout << " - employeeListRemoval: not yet implemented\n\n";
+	std::vector<std::string> employees = {
+        "John Smith",
+        "Jaelynn Stuart",
+        "Kaley Barajas",
+        "Walter Collier",
+        "Cale Myers"
+    };
+
+    outputEmployees(employees);
+
+    std::string toRemove = promptUserInput("\nEnter an employee name to remove: ");
+
+    for (int i=0; i<employees.size(); i++) {
+        if (employees[i] == toRemove) {
+            employees.erase(employees.begin() + i);
+        }
+    }
+
+    outputEmployees(employees);
 }
