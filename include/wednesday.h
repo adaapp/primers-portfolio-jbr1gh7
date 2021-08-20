@@ -10,10 +10,8 @@ std::vector<std::string> readFile() {
 
     while(getline(file, line)) {
         entries.push_back(line);
-        //output("\n" + line);
     }
 
-    //output("\n");
     output("Searching " + std::to_string(entries.size()) + " records...\n");
     file.close();
     return entries;
