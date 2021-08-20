@@ -43,7 +43,7 @@ void phoneDirectory(void) {
                 std::string found = data[i];
                 size_t start_pos = found.find(",");
                 found.replace(start_pos, delimiter.length(), formatted);
-                output("\n" + found "\n");
+                output("\n" + found + "\n");
                 isFound = true;
             }
         }
