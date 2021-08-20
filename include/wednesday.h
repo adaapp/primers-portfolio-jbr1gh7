@@ -41,7 +41,7 @@ void phoneDirectory(void) {
 
             for (std::sregex_iterator j=searchIterator; j!=std::sregex_iterator(); j++) {
                 std::string found = data[i];
-                size_t start_pos = found.find(",");
+                size_t start_pos = found.find(delimiter);
                 found.replace(start_pos, delimiter.length(), formatted);
                 output("\n" + found + "\n");
                 isFound = true;
