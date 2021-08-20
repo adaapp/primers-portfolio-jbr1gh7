@@ -10,10 +10,11 @@ std::vector<std::string> readFile() {
 
     while(getline(file, line)) {
         entries.push_back(line);
-        output("\n" + line);
+        //output("\n" + line);
     }
 
-    output("\n");
+    //output("\n");
+    output("Searching " + std::to_string(entries.size()) + " records...\n");
     file.close();
     return entries;
 }
@@ -23,6 +24,8 @@ void phoneDirectory(void) {
     std::regex searchExpression(search, std::regex_constants::icase);
     std::sregex_iterator searchIterator;
     std::vector<std::string> data = readFile(); 
+    std::string delimiter = ",";
+    std::string formatted = ", T: ";
     
     bool isFound = false;
 
@@ -33,10 +36,14 @@ void phoneDirectory(void) {
             std::sregex_iterator())
         );
         
-        //output("\n foundCount: " + std::to_string(foundCount));
         if (foundCount > 0) {
+            output("\nContact Details:");
+
             for (std::sregex_iterator j=searchIterator; j!=std::sregex_iterator(); j++) {
-                output("\nfound: " + data[i]);
+                std::string found = data[i];
+                size_t start_pos = found.find(",");
+                found.replace(start_pos, delimiter.length(), formatted);
+                output("\n" + found "\n");
                 isFound = true;
             }
         }
