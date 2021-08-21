@@ -2,37 +2,38 @@
 #include <vector>
 #include <regex>
 
-std::vector<std::string> readFile(std::string fileName, bool is2dArray = false) {
+std::vector<std::string> readFile(std::string fileName) {
     std::ifstream file(fileName);
-
     std::string line;
-
-    if (is2dArray) {
-        std::vector<std::vector<std::string>> entries;
-    }
-    else {
-        std::vector<std::string> entries;
-    }   
-
+    std::vector<std::string> entries;
+  
     while(getline(file, line)) {
-        if (is2dArray) {
-            std::stringstream stream(line);
-            std::string field;
-            std::vector<std::string> rowList;
-
-            while(getline(stream, field, ',')) {
-                rowList.push_back(field);
-            }
-
-            entries.push_back(rowList);        
-        }
-        else {
-            entries.push_back(line);
-        }
+        entries.push_back(line);
     }
 
     file.close();
     return entries;
+}
+
+std::vector<std::vector<std::string>> readFile2d(std::string fileName) {
+    std::ifstream file(fileName);
+    std::string line;
+    std::vector<std::vector<std::string>> entries2d;
+  
+    while(getline(file, line)) {
+        std::stringstream stream(line);
+        std::string field;
+        std::vector<std::string> rowList;
+
+        while(getline(stream, field, ',')) {
+            rowList.push_back(field);
+        }
+
+        entries2d.push_back(rowList);        
+    }
+
+    file.close();
+    return entries2d;
 }
 
 void phoneDirectory(void) {
@@ -72,6 +73,6 @@ void phoneDirectory(void) {
 }
 
 void dataFileParser(void) {
-	std::vector<std::vector<std::string>> dataGrid = readFile("include/salaries.csv", true);
+	std::vector<std::vector<std::string>> dataGrid = readFile2d("include/salaries.csv");
 
 }
