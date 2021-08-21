@@ -1,6 +1,7 @@
 #include <fstream>
 #include <vector>
 #include <regex>
+#include <locale>
 
 std::vector<std::string> readFile(std::string fileName) {
     std::ifstream file(fileName);
@@ -89,8 +90,9 @@ std::string findLongestName(std::vector<std::vector<std::string>> dataGrid) {
 std::string createSpacing(std::string stringToSpace, std::string longestName) {
     int spacingLength = longestName.length() - stringToSpace.length();
     std::string spacing = "";
+    int padding = 3;
 
-    for (int i=0; i<spacingLength; i++) {
+    for (int i=0; i<spacingLength + padding; i++) {
         spacing = spacing + " ";
     }
 
@@ -109,7 +111,8 @@ void dataFileParser(void) {
     for(int i=0; i<dataGrid.size(); i++) { //std::transform(str.begin(), str.end(),str.begin(), ::toupper);
         std::string initial = dataGrid[i][0].substr(0,1);
         output(
-            std::transform(initial.begin(), initial.end(), initial.begin(), ::toupper) + ".       " + 
+            "\n" +
+            initial + ".    " + 
             dataGrid[i][1] + createSpacing(dataGrid[i][1], longestName) +
             dataGrid[i][2]
         );
