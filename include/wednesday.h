@@ -86,9 +86,33 @@ std::string findLongestName(std::vector<std::vector<std::string>> dataGrid) {
     return currentLongestName;
 }
 
+std::string createSpacing(std::string stringToSpace, std::string longestName) {
+    int spacingLength = longestName.length() - stringToSpace.length();
+    std::string spacing = "";
+
+    for (int i=0; i<spacingLength; i++) {
+        spacing = spacing + " ";
+    }
+
+    return spacing;
+}
+
 void dataFileParser(void) {
 	std::vector<std::vector<std::string>> dataGrid = readFile2d("include/salaries.csv");
     std::string longestName = findLongestName(dataGrid);
-    
-    output(longestName);
+
+    output(
+        std::string("Initial ") + "Last" + createSpacing("Last", longestName) + "Salary" + 
+        "\n------ ------" + createSpacing("------", longestName) + "------"
+    );
+
+    for(int i=0; i<dataGrid.size(); i++) { //std::transform(str.begin(), str.end(),str.begin(), ::toupper);
+        std::string initial = dataGrid[i][0].substr(0,1);
+        output(
+            std::transform(initial.begin(), initial.end(), initial.begin(), ::toupper) + ".       " + 
+            dataGrid[i][1] + createSpacing(dataGrid[i][1], longestName) +
+            dataGrid[i][2]
+        );
+    }
+
 }
