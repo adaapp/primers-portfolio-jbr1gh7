@@ -59,6 +59,7 @@ void passwordComplexityChecker(void) {
             break;
         default:
             output("\nERROR: something went wrong");
+            passwordComplexityChecker();
     }
     
 }
