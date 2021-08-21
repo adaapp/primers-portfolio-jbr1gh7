@@ -72,7 +72,23 @@ void phoneDirectory(void) {
     }
 }
 
+std::string findLongestName(std::vector<std::vector<std::string>> dataGrid) {
+    int currentLongestLength = 0;
+    std::string currentLongestName;
+
+    for(int i=0; i<dataGrid.size(); i++) {
+        if (dataGrid[i][1].length() > currentLongestLength) {
+            currentLongestLength = dataGrid[i][1].length();
+            currentLongestName = dataGrid[i][1];
+        } 
+    }
+
+    return currentLongestName;
+}
+
 void dataFileParser(void) {
 	std::vector<std::vector<std::string>> dataGrid = readFile2d("include/salaries.csv");
-
+    std::string longestName = findLongestName(dataGrid);
+    
+    output(longestName);
 }
