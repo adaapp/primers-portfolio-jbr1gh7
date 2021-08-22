@@ -104,15 +104,15 @@ void dataFileParser(void) {
     std::string longestName = findLongestName(dataGrid);
 
     output(
-        std::string("Initial ") + "Last" + createSpacing("Last", longestName) + "Salary" + 
-        "\n------ ------" + createSpacing("------", longestName) + "------"
+        std::string("Initial ") + " Last" + createSpacing("Last", longestName) + "Salary" + 
+        "\n------   ------" + createSpacing("------", longestName) + "------"
     );
 
     for(int i=0; i<dataGrid.size(); i++) { //std::transform(str.begin(), str.end(),str.begin(), ::toupper);
         std::string initial = dataGrid[i][0].substr(0,1);
         output(
             "\n" +
-            initial + ".    " + 
+            initial + ".      " + 
             dataGrid[i][1] + createSpacing(dataGrid[i][1], longestName) +
             dataGrid[i][2]
         );
