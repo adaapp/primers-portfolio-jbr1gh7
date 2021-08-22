@@ -1,5 +1,8 @@
-void sleepTimer(void) {
-	std::cout << " - sleepTimer: not yet implemented\n\n";
+#include<thread>
+
+void sleepTimer(int seconds = 5) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(seconds * 1000));
+    output("I am back awake!");
 }
 
 
