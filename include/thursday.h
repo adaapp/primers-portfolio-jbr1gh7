@@ -20,7 +20,7 @@ void timer2() {
     output("\nThread 2: " + std::this_thread::get_id() + " ended");
 }
 
-int joinThreads(void) {
+std::this_thread joinThreads(void) {
     std::thread thread1(timer1);
     std::thread thread2(timer2);
 
@@ -28,6 +28,9 @@ int joinThreads(void) {
 
     thread1.join();
     thread2.join();
+
+    output("\nMain thread: " + std::this_thread::get_id() + "ended");
+    return std::this_thread::get_id()
 }
 
 void joinDetachThreads(void) {
