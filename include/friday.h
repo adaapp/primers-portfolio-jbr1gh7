@@ -6,36 +6,56 @@ class Car {
         bool isCarLocked;
     
     public: 
-        void set_colour(std::string newColour) {
+        void setColour(std::string newColour) {
             colour = newColour;
         }
 
-        std::string get_colour(void) {
+        std::string getColour(void) {
             return colour;
         }
 
-        void set_make(std::string newMake) {
+        void setMake(std::string newMake) {
             colour = newMake;
         }
 
-        std::string get_make(void) {
+        std::string getMake(void) {
             return make;
         }
         
-        void engine_on(void) {
-            isEngineOn = true;
-        }
-
-        void engine_off(void) {
-            isEngineOn = false;
-        }
-        
-        void locked(bool) {
-            if (isCarLocked) {
-                isCarLocked = false;
+        void engineOn(void) {
+            if (isEngineOn) {
+                output("\nSorry, the engine is already on\n");
             }
             else {
-                isCarLocked = true;
+                isEngineOn = true;
+            }
+        }
+
+        void engineOff(void) {
+            if (!isEngineOn) {
+                output("\nSorry, the engine is already off\n");
+            }
+            else {
+                isEngineOn = false;
+            }
+        }
+        
+        void locked(bool desiredState) {
+            if (isCarLocked == true) {
+                if (isCarLocked == desiredState) {
+                    output("\nSorry, the car is already locked\n");
+                }
+                else {
+                    isCarLocked = false;
+                }
+            }
+            else {
+                if (isCarLocked == desiredState) {
+                    output("\nSorry, the car is already unlocked\n");
+                }
+                else {
+                    isCarLocked = true;
+                }
             }
         }
 
@@ -57,32 +77,11 @@ class Car {
             }
         }
 
-        void changeEngineState(Car car, bool desiredState) {
-            if (car.isEngineOn == desiredState) {
-                if (car.isEngineOn) {
-                    output("Sorry, the engine is already on");
-                }
-                else {
-                    output("Sorry, the engine is already off");
-                }
-            }
-            else {
-                car.isEngineOn = desiredState;
-            }
-        }
-
-        void changeLockState(Car car, bool desiredState) {
-            if (car.isCarLocked == desiredState) {
-                if (car.isCarLocked) {
-                    output("Sorry, the car is already locked");
-                }
-                else {
-                    output("Sorry, the car is already unlocked");
-                }
-            }
-            else {
-                car.isCarLocked = desiredState;
-            }
+        Car() {
+            setColour("Blue");
+            setMake("Honda");
+            isEngineOn = false;
+            isCarLocked = true;
         }
 };
 
@@ -93,26 +92,26 @@ void makeChoice(Car car) {
     if (validateNumber(choice, true)) {
         switch (stoi(choice)) {
             case 0:
-                output("finished");
+                output("\nfinished");
                 break;
             case 1:
-                car.changeEngineState(car, true);
+                car.engineOn();
                 makeChoice(car);
                 break;
             case 2:
-                car.changeEngineState(car, false);
+                car.engineOff();
                 makeChoice(car);
                 break;
             case 3:
-                car.changeLockState(car, true);
+                car.locked(true);
                 makeChoice(car);
                 break;
             case 4:
-                car.changeLockState(car, false);
+                car.locked(false);
                 makeChoice(car);
                 break;
             default:
-                output("\nERROR: something went wrong");
+                output("\nERROR: something went wrong\n");
                 makeChoice(car);
         }
     }

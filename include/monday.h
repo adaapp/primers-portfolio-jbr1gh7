@@ -49,10 +49,10 @@ bool validateNumber(std::string toBeValidated, bool isIntExpected = false) {
     }
 
     if (!isValid && !isIntExpected) {
-        output("ERROR: \"" + toBeValidated + "\" is not a valid decimal number. Try again.");
+        output("\nERROR: \"" + toBeValidated + "\" is not a valid decimal number. Try again.");
     }
     else if (!isValid && isIntExpected) {
-        output("ERROR: \"" + toBeValidated + "\" is not a valid whole number. Try again.");
+        output("\nERROR: \"" + toBeValidated + "\" is not a valid whole number. Try again.");
     }
 
     return isValid;
