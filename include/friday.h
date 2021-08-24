@@ -1,4 +1,4 @@
-#include <math.h>
+#include <boost/math/constants/constants.hpp>
 
 class Car {
     private:
@@ -138,15 +138,24 @@ class AreaOf {
         }
 
         float size(float topBase, float bottomBase, float height) {
-            return (topBase + bottomBase) * 2 * height;
+            return ((topBase + bottomBase) / 2) * height;
         }
 
         AreaOf() {
             //what is being constructed?????????
-        }
+        };
 
-}
+        ~AreaOf() {}
+};
 
 void areaOf(void) {
+    AreaOf circle;
+    AreaOf rectangle;
+    AreaOf trapezoid;
 
+    output(
+        "\nArea of Circle (r = 4.5): " + std::to_string(circle.size(4.5)) +
+        "\nArea of Rectangle (w = 4, l = 5.9): " + std::to_string(rectangle.size(4, 5.9)) +
+        "\nArea of Trapezoid (b = 14, h = 7.5, a = 6): " + std::to_string(trapezoid.size(14, 7.5, 6))
+    );
 }
