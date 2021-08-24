@@ -6,63 +6,65 @@ class Car {
         bool isCarLocked;
     
     public: 
-        void set_colour(std::string) {
-
+        void set_colour(std::string newColour) {
+            colour = newColour;
         }
 
         std::string get_colour(void) {
-
+            return colour;
         }
 
-        void set_make(std::string) {
-
+        void set_make(std::string newMake) {
+            colour = newMake;
         }
 
         std::string get_make(void) {
-
+            return make;
         }
         
         void engine_on(void) {
-
+            isEngineOn = true;
         }
 
         void engine_off(void) {
-
+            isEngineOn = false;
         }
         
         void locked(bool) {
-
+            if (isCarLocked) {
+                isCarLocked = false;
+            }
+            else {
+                isCarLocked = true;
+            }
         }
 
         void status(void) {
-            
+            output("\nCar Status: colour:" + colour + ", make:" + make);
+
+            if (isEngineOn) {
+                output(", engine: Running");
+            }
+            else {
+                output(", engine: Off");
+            }
+
+            if (isCarLocked) {
+                output(", Locked");
+            }
+            else {
+                output(", Unlocked");
+            }
         }
 };
 
 void carClass(void) {
-    /*
-    Car Status: colour: Blue, make: Honda, engine: Off, Unlocked
-    1. Turn Engine On
-    2. Turn Engine Off
-    3. Lock Car
-    4. Unlock Car
-    Please select an option (or 0 to finish): 2
-    Sorry, the engine is already off
-    Car Status: colour: Blue, make: Honda, engine: Off, Unlocked
-    1. Turn Engine On
-    2. Turn Engine Off
-    3. Lock Car
-    4. Unlock Car
-    Please select an option (or 0 to finish): 1
-    Turning the engine on
-    Car Status: colour: Blue, make: Honda, engine: Running, Unlocked
-    1. Turn Engine On
-    2. Turn Engine Off
-    3. Lock Car
-    4. Unlock Car
-    Please select an option (or 0 to finish): 4
-    Sorry, the car is already unlocked
-    */
+    Car car;
+
+    car.status();
+    int choice = promptUserInput("\n1. Turn Engine On\n2. Turn Engine Off\n3. Lock Car\n4. Unlock Car\nPlease select an option (or 0 to finish): ");
+
+    
 
     
 }
