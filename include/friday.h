@@ -1,3 +1,5 @@
+#include <math.h>
+
 class Car {
     private:
         std::string colour;
@@ -15,7 +17,7 @@ class Car {
         }
 
         void setMake(std::string newMake) {
-            colour = newMake;
+            make = newMake;
         }
 
         std::string getMake(void) {
@@ -60,7 +62,7 @@ class Car {
         }
 
         void status(void) {
-            output("\nCar Status: colour:" + colour + ", make:" + make);
+            output("\nCar Status: colour: " + colour + ", make: " + make);
 
             if (isEngineOn) {
                 output(", engine: Running");
@@ -125,7 +127,26 @@ void carClass(void) {
     makeChoice(car);
 }
 
+class AreaOf {
+    public:
+        float size(float radius) {
+            return boost::math::constants::pi<float>() * (radius * radius);
+        }
+
+        float size(float length, float width) {
+            return length * width;
+        }
+
+        float size(float topBase, float bottomBase, float height) {
+            return (topBase + bottomBase) * 2 * height;
+        }
+
+        AreaOf() {
+            //what is being constructed?????????
+        }
+
+}
 
 void areaOf(void) {
-		std::cout << " - areaOf: not yet implemented\n\n";
+
 }
