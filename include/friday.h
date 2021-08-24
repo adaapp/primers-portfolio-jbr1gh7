@@ -56,17 +56,74 @@ class Car {
                 output(", Unlocked");
             }
         }
+
+        void changeEngineState(Car car, bool desiredState) {
+            if (car.isEngineOn == desiredState) {
+                if (car.isEngineOn) {
+                    output("Sorry, the engine is already on");
+                }
+                else {
+                    output("Sorry, the engine is already off");
+                }
+            }
+            else {
+                car.isEngineOn = desiredState;
+            }
+        }
+
+        void changeLockState(Car car, bool desiredState) {
+            if (car.isCarLocked == desiredState) {
+                if (car.isCarLocked) {
+                    output("Sorry, the car is already locked");
+                }
+                else {
+                    output("Sorry, the car is already unlocked");
+                }
+            }
+            else {
+                car.isCarLocked = desiredState;
+            }
+        }
 };
+
+void makeChoice(Car car) {
+    car.status();
+    std::string choice = promptUserInput("\n1. Turn Engine On\n2. Turn Engine Off\n3. Lock Car\n4. Unlock Car\nPlease select an option (or 0 to finish): ");
+
+    if (validateNumber(choice, true)) {
+        switch (stoi(choice)) {
+            case 0:
+                output("finished");
+                break;
+            case 1:
+                car.changeEngineState(car, true);
+                makeChoice(car);
+                break;
+            case 2:
+                car.changeEngineState(car, false);
+                makeChoice(car);
+                break;
+            case 3:
+                car.changeLockState(car, true);
+                makeChoice(car);
+                break;
+            case 4:
+                car.changeLockState(car, false);
+                makeChoice(car);
+                break;
+            default:
+                output("\nERROR: something went wrong");
+                makeChoice(car);
+        }
+    }
+    else {
+        makeChoice(car);
+    }
+}
 
 void carClass(void) {
     Car car;
-
-    car.status();
-    int choice = promptUserInput("\n1. Turn Engine On\n2. Turn Engine Off\n3. Lock Car\n4. Unlock Car\nPlease select an option (or 0 to finish): ");
-
-    
-
-    
+    makeChoice(car);
 }
 
 
