@@ -137,7 +137,7 @@ class AreaOf {
             return length * width;
         }
 
-        float size(float topBase, float bottomBase, float height) {
+        float size(float topBase, float height, float bottomBase) {
             return ((topBase + bottomBase) / 2) * height;
         }
 
